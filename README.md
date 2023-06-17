@@ -30,10 +30,10 @@ npm install
 4. Start the development server:
 
 ```shell
-npm start dev
+npm run dev
 ```
 
-This will launch the application on http://localhost:3000.
+This will launch the application on http://localhost:5173.
 
 ## Usage
 - Saving a GIF: To save a GIF, click on the "Save" button associated with the GIF. The GIF will be added to your collection of saved GIFs.
