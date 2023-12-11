@@ -21,7 +21,6 @@ import PersonIcon from "@mui/icons-material/Person";
 const REMOVE_GIF = "REMOVE_GIF";
 
 const SavedGifsPage = () => {
-  // Retrieve the saved gifs from the Redux store
   const savedGifs = useSelector((state) => state.gifs.savedGifs);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -32,11 +31,8 @@ const SavedGifsPage = () => {
   };
 
   const handleRemoveGif = (gif) => {
-    // Show the removal alert
     setShowAlert(true);
-    // Dispatch the REMOVE_GIF action with the selected gif
     dispatch({ type: REMOVE_GIF, gif });
-    // Hide the alert after a delay
     setTimeout(() => {
       setShowAlert(false);
     }, 2000);

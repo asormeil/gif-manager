@@ -23,13 +23,12 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import PersonIcon from "@mui/icons-material/Person";
 import SearchIcon from "@mui/icons-material/Search";
 
-// Define your action types
 const SAVE_GIF = "SAVE_GIF";
 const SET_SEARCH_QUERY = "SET_SEARCH_QUERY";
 const SET_SEARCH_RESULTS = "SET_SEARCH_RESULTS";
 const SET_TOTAL_PAGES = "SET_TOTAL_PAGES";
 const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
-// Define your initial state
+
 const gifsPerPage = 10;
 
 const SearchPage = () => {
@@ -48,21 +47,17 @@ const SearchPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  // Handler for navigating to the saved gifs page
   const handleSavedGifsClick = () => {
     navigate("/saved-gifs");
   };
 
-  // Handler for navigating to the home page
   const handleHomeClick = () => {
     navigate("/");
   };
 
-  // Handler for saving a gif
   const handleSaveGif = (gif) => {
     setShowAlert(true);
 
-    // Dispatching an action to save the gif
     dispatch({ type: SAVE_GIF, gif });
 
     setTimeout(() => {
@@ -70,7 +65,6 @@ const SearchPage = () => {
     }, 2000);
   };
 
-  // Handler for performing a search
   const handleSearch = async (event) => {
     event.preventDefault();
     try {
@@ -82,7 +76,6 @@ const SearchPage = () => {
       console.log(
         `https://api.giphy.com/v1/gifs/search?q=${searchQuery}&api_key=WnTEYVz8yJSXIH1ZF4mLgRF33Ey4oC1g`
       );
-      // Dispatching actions to update search results and pagination
       dispatch({ type: SET_SEARCH_RESULTS, searchResults: data.data });
       dispatch({
         type: SET_TOTAL_PAGES,
@@ -96,7 +89,6 @@ const SearchPage = () => {
     }
   };
 
-  // Fetching initial gifs when the component mounts
   useEffect(() => {
     const fetchInitialGifs = async () => {
       try {
@@ -127,9 +119,7 @@ const SearchPage = () => {
         setLoading(false);
       }, 1000);
 
-      // Dispatching an action to update the current page
       dispatch({ type: SET_CURRENT_PAGE, currentPage: currentPage + 1 });
-      // Delay for 0.5 seconds (500 milliseconds)
     }
   };
 
@@ -141,7 +131,6 @@ const SearchPage = () => {
         setLoading(false);
       }, 1000);
 
-      // Dispatching an action to update the current page
       dispatch({ type: SET_CURRENT_PAGE, currentPage: currentPage - 1 });
     }
   };
@@ -154,7 +143,7 @@ const SearchPage = () => {
     setShowAlert(false);
   };
 
-  // Pagination calculations
+  // client pagination calculations
   const startIndex = (currentPage - 1) * gifsPerPage;
   const endIndex = startIndex + gifsPerPage;
   const displayedGifs = searchResults.slice(startIndex, endIndex);

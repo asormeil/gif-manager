@@ -21,7 +21,6 @@ const gifReducer = (state = initialState, action) => {
   
   switch (action.type) {
     case SAVE_GIF:
-      // To ensure immutability, create a new array when updating savedGifs instead of modifying the existing array.
       const savedGifs = [...state.savedGifs, action.gif];
       return {
         ...state,
